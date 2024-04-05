@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reg Form</title>
+    <style type="text/css">
+        body{
+            font-family: Calibri;
+        }
+        input[type="text"] {
+            width: 250px;
+        }
+        input[type="submit"], input[type="reset"] {
+            width: 77px;
+            height: 27px;
+            position: relative;left: 180px;
+        }
+        form{
+            text-align: center;
+            font-family: Calibri;
+            font-size: 20px;
+            border: 3px solid black;
+            width: 600px;
+            margin: 20px auto;
+        }
+        td {
+            padding: 10px;
+        }
+        td:first-child {
+            text-align: right;
+            font-weight: bold;
+        }
+        td:last-child {
+            text-align: left;
+        }	
+    </style>
+    <script>
+       function validate1() {
+    var fname = document.reg_form.fname.value;
+    var lname = document.reg_form.lname.value;
+    var password = document.reg_form.password.value;
+    var mobile = document.reg_form.mobile.value;
+    var status = true;
+
+    if (fname.length <= 0 || !/^[a-zA-Z]/.test(fname)) {
+        alert("First Name is required and must start with a letter");
+        document.getElementById("firstName").innerHTML = "Please enter a valid First Name";
+        status = false;
+    }
+
+    if (lname.length <= 0) {
+        alert("Last Name is required");
+        document.getElementById("lastName").innerHTML = "Please enter your Last Name";
+        status = false;
+    }
+
+    if (password.length < 8 || !/\d/.test(password)) {
+        alert("Password must be at least 8 characters long and contain at least one digit");
+        document.getElementById("password").innerHTML = "Password must be at least 8 characters long and contain at least one digit";
+        status = false;
+    }
+
+    if (mobile.length != 10 || !/^\d+$/.test(mobile)) {
+        alert("Phone Number must be 10 digits long");
+        document.getElementById("number").innerHTML = "Phone Number must be 10 digits long";
+        status = false;
+    }
+
+    return status;
+}
+
+    </script>
+</head>
+<body>
+    <div class="flex">
+        <ul>
+            <li class="items"><a href="index.html">Home</a></li>
+        </ul>
+    </div>
+    <form action="connect.php" method="POST" name="reg_form" onsubmit="return validate1()">
+        <h1 align="center">Registration Form</h1>
+        <table>
+            <tr>
+                <td> <label for="firstName">First Name</label>
+               </td>
+                <td>
+                    <input type="text" name="fname" id="firstName" placeholder="First Name">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="lastName">Last Name</label>
+                </td>
+                <td>
+                    <input type="text" name="lname" id="lastName" placeholder="Last Name">
+                </td>
+            </tr>
+            <tr>
+			<td><label>Gender:</td>
+                <td><label for="male">
+                    <input type="radio" name="gender"  value="male" id="male">Male</label>
+					    <label for="female">
+                    <input type="radio" name="gender" id="female" value="female">Female</label>
+					<label for="others">
+					<input type="radio" name="gender" id="others" value="others">Others</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="email">Email:</label></td>
+                <td>
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com" required/>
+                </td>
+            </tr>
+			<tr><td><label for="password">Password:</label></td>
+                <td><input type="password" id="password" name="password" required/></td></tr>
+           
+            <tr>
+                <td><label for="number">Phone Number:</label></td>
+                <td>
+                    <input type="tel" id="number" name="mobile" required/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" name="submit" value="Submit">
+                    <input type="reset" name="reset" value="Reset">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
